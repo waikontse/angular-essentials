@@ -20,8 +20,5 @@ import { ProductService } from 'src/api/products/product.service';
   exports: [
     ViewerComponent
   ],
-  providers: [
-    ProductService,
-  ]
 })
 export class ProductManagerModule { }

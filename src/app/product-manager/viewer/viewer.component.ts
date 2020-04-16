@@ -5,7 +5,8 @@ import { ProductService } from 'src/api/products/product.service';
 @Component({
   selector: 'app-viewer',
   templateUrl: './viewer.component.html',
-  styleUrls: ['./viewer.component.css']
+  styleUrls: ['./viewer.component.css'],
+  providers: [ProductService]
 })
 export class ViewerComponent implements OnInit {
   filteredBy: string;
@@ -26,7 +27,7 @@ export class ViewerComponent implements OnInit {
 
   private performFilter(filterBy: string): Product[] {
     const filterByLowercase = filterBy.toLocaleLowerCase();
-    return this.products.filter(product => product.productName.toLocaleLowerCase().includes(filterByLowercase));
+    return this.products?.filter(product => product.productName.toLocaleLowerCase().includes(filterByLowercase));
   }
 
   filteredProducts: Product[];
@@ -34,13 +35,12 @@ export class ViewerComponent implements OnInit {
   products: Product[];
 
   constructor(private productService: ProductService) {
-    this.products = productService.getProducts();
-    this.filteredProducts = this.products;
-    this.listFilter = 'cart';
   }
 
   ngOnInit(): void {
     console.log("on init.");
+    this.products = this.productService.getProducts();
+    this.filteredProducts = this.products;
   }
 
   public toggleImage(): void {
