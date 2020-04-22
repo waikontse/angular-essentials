@@ -4,7 +4,10 @@ import { ViewerComponent } from './viewer/viewer.component';
 import { FormsModule } from '@angular/forms'
 import { ConvertToSpaces } from '../shared/convert-to-spaces.pipe';
 import { StarComponent } from '../shared/star.component';
-import { ProductService } from 'src/api/products/product.service';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ActivatedRoute } from '@angular/router'
+import { AppRoutingModule } from '../app-routing.module'
+
 
 
 @NgModule({
@@ -12,10 +15,12 @@ import { ProductService } from 'src/api/products/product.service';
     ViewerComponent,
     ConvertToSpaces,
     StarComponent,
+    ProductDetailComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
+    AppRoutingModule,
   ],
   exports: [
     ViewerComponent

@@ -3,7 +3,6 @@ import { Product } from 'src/api/products/product';
 import { ProductService } from 'src/api/products/product.service';
 
 @Component({
-  selector: 'app-viewer',
   templateUrl: './viewer.component.html',
   styleUrls: ['./viewer.component.css'],
   providers: [ProductService]
@@ -31,16 +30,21 @@ export class ViewerComponent implements OnInit {
   }
 
   filteredProducts: Product[];
-
   products: Product[];
+  errorMessage: string;
 
   constructor(private productService: ProductService) {
   }
 
   ngOnInit(): void {
     console.log("on init.");
-    this.products = this.productService.getProducts();
-    this.filteredProducts = this.products;
+    this.productService.getProducts().subscribe({
+      next: products => {
+        this.products = products;
+        this.filteredProducts = this.products;
+      },
+      error: err => this.errorMessage = err
+    });
   }
 
   public toggleImage(): void {
