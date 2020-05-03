@@ -37,7 +37,6 @@ export class ViewerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("on init.");
     this.productService.getProducts().subscribe({
       next: products => {
         this.products = products;
@@ -48,8 +47,7 @@ export class ViewerComponent implements OnInit {
   }
 
   public toggleImage(): void {
-    console.log('toggled image');
-    this.showImage = !this.showImage;
+      this.showImage = !this.showImage;
   }
 
   public onNotify(message: string): void {
